@@ -133,7 +133,7 @@ if (LIBUNWIND_ENABLE_SHARED)
     target_compile_options(unwind_shared PRIVATE -fno-rtti)
   endif()
   target_link_libraries(unwind_shared PRIVATE ${LIBUNWIND_LIBRARIES})
-  target_compile_definitions(unwind_shared PRIVATE _LIBUNWIND_NO_HEAP=1)
+  target_compile_definitions(unwind_shared PRIVATE _LIBUNWIND_NO_HEAP=1 _LIBUNWIND_USE_DL_ITERATE_PHDR=0)
   set_target_properties(unwind_shared PROPERTIES
     CXX_EXTENSIONS OFF
     CXX_STANDARD 11
@@ -159,7 +159,7 @@ if (LIBUNWIND_ENABLE_STATIC)
     target_compile_options(unwind_static PRIVATE -fno-rtti)
   endif()
   target_link_libraries(unwind_static PRIVATE ${LIBUNWIND_LIBRARIES})
-  target_compile_definitions(unwind_static PRIVATE _LIBUNWIND_NO_HEAP=1)
+  target_compile_definitions(unwind_static PRIVATE _LIBUNWIND_NO_HEAP=1 _LIBUNWIND_USE_DL_ITERATE_PHDR=0)
   set_target_properties(unwind_static PROPERTIES
     CXX_EXTENSIONS OFF
     CXX_STANDARD 11

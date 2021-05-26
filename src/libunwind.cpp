@@ -319,37 +319,37 @@ void * StackBuffer::next_allocated_entry = nullptr;
 _LIBUNWIND_HIDDEN
 bool logAPIs() {
   // do manual lock to avoid use of _cxa_guard_acquire or initializers
-  static bool checked = false;
-  static bool log = false;
-  if (!checked) {
-    log = (getenv("LIBUNWIND_PRINT_APIS") != NULL);
-    checked = true;
-  }
-  return log;
+  // static bool checked = false;
+  // static bool log = false;
+  // if (!checked) {
+  //   log = (getenv("LIBUNWIND_PRINT_APIS") != NULL);
+  //   checked = true;
+  // }
+  return true;
 }
 
 _LIBUNWIND_HIDDEN
 bool logUnwinding() {
   // do manual lock to avoid use of _cxa_guard_acquire or initializers
-  static bool checked = false;
-  static bool log = false;
-  if (!checked) {
-    log = (getenv("LIBUNWIND_PRINT_UNWINDING") != NULL);
-    checked = true;
-  }
-  return log;
+  // static bool checked = false;
+  // static bool log = false;
+  // if (!checked) {
+  //   log = (getenv("LIBUNWIND_PRINT_UNWINDING") != NULL);
+  //   checked = true;
+  // }
+  return true;
 }
 
 _LIBUNWIND_HIDDEN
 bool logDWARF() {
   // do manual lock to avoid use of _cxa_guard_acquire or initializers
-  static bool checked = false;
-  static bool log = false;
-  if (!checked) {
-    log = (getenv("LIBUNWIND_PRINT_DWARF") != NULL);
-    checked = true;
-  }
-  return log;
+  // static bool checked = false;
+  // static bool log = false;
+  // if (!checked) {
+  //   log = (getenv("LIBUNWIND_PRINT_DWARF") != NULL);
+  //   checked = true;
+  // }
+  return true;
 }
 
 #endif // NDEBUG

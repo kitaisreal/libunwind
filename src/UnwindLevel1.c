@@ -36,6 +36,10 @@
 
 static _Unwind_Reason_Code
 unwind_phase1(unw_context_t *uc, unw_cursor_t *cursor, _Unwind_Exception *exception_object) {
+  _LIBUNWIND_TRACE_UNWINDING(
+    "libunwind start unwind_phase1 cursor %p",
+    (void *)cursor);
+
   __unw_init_local(cursor, uc);
 
   // Walk each frame looking for a place to stop.

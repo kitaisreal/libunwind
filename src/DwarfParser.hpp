@@ -141,6 +141,7 @@ private:
 
   public:
     static FreeListEntry *alloc() {
+      _LIBUNWIND_TRACE_DWARF("StackBuffer alloc \n");
       /// At first, try to get element from free list.
       {
         void *expected = nullptr;
@@ -165,13 +166,13 @@ private:
                          MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
 
         if (MAP_FAILED == res)
-          abort();
+          _LIBUNWIND_ABORT("MMAP failed");
 
         atomic_store_wrapper(buffer, res);
       }
 
       if ((prev + 1) * entrySize >= buffer_size)
-        abort();
+        _LIBUNWIND_ABORT("Cant allocate additional pieces");
 
       /// Life loop. In case memory was not allocated yet.
       void *data = nullptr;
@@ -183,6 +184,8 @@ private:
     }
 
     static void free(FreeListEntry *entry) {
+      _LIBUNWIND_TRACE_DWARF("StackBuffer free \n");
+
       void *expected = nullptr;
       entry->next = nullptr;
 
@@ -204,7 +207,7 @@ public:
 
   void pop() {
     if (stack_top == nullptr)
-      abort();
+      _LIBUNWIND_ABORT("Stack is empty abort");
 
     StackBuffer::FreeListEntry *entry = stack_top;
     stack_top = stack_top->next;
